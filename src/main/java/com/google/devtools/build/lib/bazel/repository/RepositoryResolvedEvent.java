@@ -96,13 +96,14 @@ public class RepositoryResolvedEvent implements ResolvedEvent {
         ImmutableMap.<String, Object>builder().put(RULE_CLASS, originalClass);
 
     String digest = "[unavailable]";
-    try {
-      digest = outputDirectory.getDirectoryDigest();
-      repositoryBuilder.put(OUTPUT_TREE_HASH, digest);
-    } catch (IOException e) {
-      // Digest not available, but we still have to report that a repository rule
-      // was invoked. So we can do nothing, but ignore the event.
-    }
+    //try {
+    // This takes too long and we don't need it.
+    // digest = outputDirectory.getDirectoryDigest();
+    repositoryBuilder.put(OUTPUT_TREE_HASH, digest);
+    //} catch (IOException e) {
+    // Digest not available, but we still have to report that a repository rule
+    // was invoked. So we can do nothing, but ignore the event.
+    //}
     this.directoryDigest = digest;
 
     if (result == Runtime.NONE) {
